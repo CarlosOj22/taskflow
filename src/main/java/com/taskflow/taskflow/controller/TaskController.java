@@ -4,6 +4,7 @@ import com.taskflow.taskflow.model.Task;
 import com.taskflow.taskflow.model.TaskPriority;
 import com.taskflow.taskflow.model.TaskStatus;
 import com.taskflow.taskflow.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public Task postTask(@RequestBody Task task){
+    public Task postTask(@RequestBody @Valid Task task){
         //Transform JSON into a task by taskService.createTask
         return taskService.createTask(task);
     }
@@ -55,4 +56,7 @@ public class TaskController {
     public void deleteTaskById(@PathVariable Long id){
         taskService.deleteTask(id);
     }
+
+    @GetMapping("/info")
+    public String info(){return "info";}
 }

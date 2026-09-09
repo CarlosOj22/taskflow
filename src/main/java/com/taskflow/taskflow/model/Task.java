@@ -2,8 +2,9 @@ package com.taskflow.taskflow.model;
 
 
 import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -13,14 +14,17 @@ public class Task {
     @Id
     @GeneratedValue
     private Long id;
+    @NotBlank
     private String name;
     private String description;
     //Enumerad tell JPA not to use smallint for enums.
     @Enumerated(EnumType.STRING)
+    @NotNull
     private TaskStatus status;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @Enumerated(EnumType.STRING)
+    @NotNull
     private TaskPriority priority;
 
     //Constructor
